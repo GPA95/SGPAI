@@ -25,3 +25,7 @@ app.include_router(adaptive.router, prefix="/api/adaptive", tags=["adaptive"])
 @app.get("/")
 async def root():
     return {"message": "Welcome to SGPAI API"}
+
+@app.get("/api/health")
+def health_check():
+    return {"status": "healthy", "message": "SGPAI API is running"}
