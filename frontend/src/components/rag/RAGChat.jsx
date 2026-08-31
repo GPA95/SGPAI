@@ -84,42 +84,48 @@ const RAGChat = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-50">
-      {/* Left Panel: Knowledge Base */}
-      <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
-        <KnowledgeBase
-          documents={documents}
-          onUpload={handleDocumentUpload}
-        />
-      </div>
+    <div className="flex flex-col h-screen bg-gray-50">
+      {/* Navbar at top */}
+      <Navbar />
 
-      {/* Center Panel: Chat */}
-      <div className="flex-1 flex flex-col">
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {messages.map((message) => (
-            <ChatMessage key={message.id} message={message} />
-          ))}
-          {isLoading && (
-            <div className="flex items-center space-x-2 text-gray-500">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
-              <span>AI is thinking...</span>
-            </div>
-          )}
-          <div ref={messagesEndRef} />
+      {/* Rest of the UI */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Left Panel: Knowledge Base */}
+        <div className="w-64 bg-white border-r border-gray-200 overflow-y-auto">
+          <KnowledgeBase
+            documents={documents}
+            onUpload={handleDocumentUpload}
+          />
         </div>
 
-        {/* Input */}
-        <div className="border-t border-gray-200 p-4 bg-white">
-          <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
-        </div>
-      </div>
+        {/* Center Panel: Chat */}
+        <div className="flex-1 flex flex-col">
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {messages.map((message) => (
+              <ChatMessage key={message.id} message={message} />
+            ))}
+            {isLoading && (
+              <div className="flex items-center space-x-2 text-gray-500">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
+                <span>AI is thinking...</span>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
 
-      {/* Right Panel: Tools */}
-      <div className="w-72 bg-white border-l border-gray-200 overflow-y-auto p-4">
-        <h3 className="font-semibold text-gray-700 mb-4">Study Tools</h3>
-        <QuizGenerator />
-        {/* Add more tools: Summarizer, Lesson Planner, etc. */}
+          {/* Input */}
+          <div className="border-t border-gray-200 p-4 bg-white">
+            <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+          </div>
+        </div>
+
+        {/* Right Panel: Tools */}
+        <div className="w-72 bg-white border-l border-gray-200 overflow-y-auto p-4">
+          <h3 className="font-semibold text-gray-700 mb-4">Study Tools</h3>
+          <QuizGenerator />
+          {/* Add more tools: Summarizer, Lesson Planner, etc. */}
+        </div>
       </div>
     </div>
   );
