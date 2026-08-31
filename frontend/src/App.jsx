@@ -1,20 +1,25 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
-import StudentGuide from './pages/StudentGuide';
-import TeacherGuide from './pages/TeacherGuide';
-import StudentRAG from './pages/StudentRAG';
+import StudentHome from './pages/StudentHome';
+import RAGChat from './components/rag/RAGChat';  // Import your component
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
+        {/* Existing routes */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/student-dashboard" element={<StudentGuide />} />
-        <Route path="/teacher-dashboard" element={<TeacherGuide />} />
-        <Route path="/student-rag" element={<StudentRAG />} />
+        <Route path="/student" element={<StudentHome />} />
+
+        {/* NEW: Route to test RAG Chat */}
+        <Route path="/test/rag-chat" element={<RAGChat />} />
+
+        {/* Future routes */}
+        {/* <Route path="/student/rag-chat" element={<RAGChat />} /> */}
       </Routes>
     </Router>
   );
