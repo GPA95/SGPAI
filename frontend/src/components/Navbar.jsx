@@ -7,11 +7,14 @@ const Navbar = () => {
                 <Link to="/" className="font-bold text-xl text-blue-600">
                     SGPAI
                 </Link>
-                <Link to="/test/rag-chat" className="text-gray-600 hover:text-blue-600">
-                    RAG Chat
+                <Link to="/student" className="text-gray-600 hover:text-blue-600 font-medium">
+                    Student Guide
                 </Link>
-                <Link to="/student" className="text-gray-600 hover:text-blue-600">
-                    Student Home
+                <Link to="/teacher" className="text-gray-600 hover:text-blue-600 font-medium">
+                    Teacher Guide
+                </Link>
+                <Link to="/student/rag-chat" className="text-gray-600 hover:text-blue-600">
+                    RAG Chat
                 </Link>
             </div>
         </nav>
