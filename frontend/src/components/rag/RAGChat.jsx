@@ -2,20 +2,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import KnowledgeBase from './KnowledgeBase';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
-import QuizGenerator from './QuizGenerator';
 import Navbar from '../Navbar';
 
-const RAGChat = () => {
+const RAGChat = ({ userType, toolsPanel, initialDocuments = [] }) => {
   const [messages, setMessages] = useState([
     {
       id: 1,
       type: 'bot',
-      text: 'Hi! I\'m your AI study assistant. Ask me anything about your study materials!',
+      text: `Hi! I'm your AI ${userType === 'teacher' ? 'teaching' : 'study'} assistant. Ask me anything about your materials!`,
       citations: []
     }
   ]);
   const [isLoading, setIsLoading] = useState(false);
-  const [documents, setDocuments] = useState([
+  const [documents, setDocuments] = useState(initialDocuments.length > 0 ? initialDocuments : [
     { id: 1, name: 'Physics Chapter 5.pdf', status: 'indexed' },
     { id: 2, name: 'Chemistry Notes.pdf', status: 'indexed' }
   ]);
@@ -40,14 +39,6 @@ const RAGChat = () => {
     setIsLoading(true);
 
     try {
-      // TODO: Replace with actual API call
-      // const response = await fetch('/api/rag/chat', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ message, documents })
-      // });
-      // const data = await response.json();
-
       // Mock response for now
       await new Promise(resolve => setTimeout(resolve, 1000));
       const botMessage = {
@@ -67,7 +58,6 @@ const RAGChat = () => {
   };
 
   const handleDocumentUpload = (file) => {
-    // TODO: Replace with actual API call
     const newDoc = {
       id: documents.length + 1,
       name: file.name,
@@ -85,9 +75,6 @@ const RAGChat = () => {
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
-      {/* Navbar at top */}
-      <Navbar />
-
       {/* Rest of the UI */}
       <div className="flex flex-1 overflow-hidden">
         {/* Left Panel: Knowledge Base */}
@@ -122,9 +109,7 @@ const RAGChat = () => {
 
         {/* Right Panel: Tools */}
         <div className="w-72 bg-white border-l border-gray-200 overflow-y-auto p-4">
-          <h3 className="font-semibold text-gray-700 mb-4">Study Tools</h3>
-          <QuizGenerator />
-          {/* Add more tools: Summarizer, Lesson Planner, etc. */}
+          {toolsPanel}
         </div>
       </div>
     </div>

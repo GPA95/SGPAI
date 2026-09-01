@@ -1,15 +1,15 @@
 import React from 'react';
 import RAGChat from '../components/rag/RAGChat';
+import StudentTools from '../components/rag/tools/StudentTools';
 
-const StudentRAG = () => {
+function StudentRAG() {
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-3xl font-bold mb-6">Study Buddy RAG Chat</h1>
-      <div className="bg-white rounded-lg shadow-md p-6 h-[600px]">
-        <RAGChat />
-      </div>
-    </div>
+    <RAGChat
+      userType="student"
+      toolsPanel={<StudentTools />}
+      initialDocuments={[]}
+    />
   );
-};
+}
 
 export default StudentRAG;
