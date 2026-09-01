@@ -2,7 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import StudentHome from './pages/StudentHome';
-import RAGChat from './components/rag/RAGChat';  // Import your component
+import RAGChat from './components/rag/RAGChat';
+import StudentRAG from './pages/StudentRAG';
+import TeacherRAG from './pages/TeacherRAG';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -10,16 +12,16 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        {/* Existing routes */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/student" element={<StudentHome />} />
-
-        {/* NEW: Route to test RAG Chat */}
-        <Route path="/test/rag-chat" element={<RAGChat />} />
-
-        {/* Future routes */}
-        {/* <Route path="/student/rag-chat" element={<RAGChat />} /> */}
+        
+        {/* RAG Chat Routes */}
+        <Route path="/student/rag-chat" element={<StudentRAG />} />
+        <Route path="/teacher/rag-chat" element={<TeacherRAG />} />
+        
+        {/* Legacy route for backwards compatibility if needed */}
+        <Route path="/test/rag-chat" element={<RAGChat userType="student" toolsPanel={<div>Testing</div>} />} />
       </Routes>
     </Router>
   );
